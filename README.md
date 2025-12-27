@@ -60,27 +60,49 @@ If you want to know what the current status of a package is or why a package has
 You can learn about dependencies using `apt depends <package-name>` or `apt rdepends <package-name>`.  apt depends will tell you which packages are dependencies, recommends and suggests for <package-name> 
 
 `wizard@laptop 17:08:59 $ apt depends synaptic
+
 synaptic
+
   Depends: libapt-pkg7.0 (>= 1.9.0)
+  
   Depends: libc6 (>= 2.38)
+  
   Depends: libgcc-s1 (>= 3.0)
+  
   Depends: libgdk-pixbuf-2.0-0 (>= 2.22.0)
+  
   Depends: libglib2.0-0t64 (>= 2.12.0)
+    
   Depends: libgtk-3-0t64 (>= 3.21.5)
+  
   Depends: libpango-1.0-0 (>= 1.14.0)
+  
   Depends: libstdc++6 (>= 13.1)
+  
   Depends: libvte-2.91-0 (>= 0.49.92)
+  
   Depends: hicolor-icon-theme
- |Depends: polkitd
+ |
+ Depends: polkitd
+ 
   Depends: <policykit-1>
+  
   Depends: pkexec
+  
   Depends: <policykit-1>
+  
   Recommends: libgtk3-perl
+  
   Recommends: xdg-utils
+  
   Suggests: dwww
+  
   Suggests: <deborphan>
+  
   Suggests: apt-xapian-index
+  
   Suggests: tasksel
+  
   Suggests: software-properties-gtk`
   
   remembering that by default depends and recommends are installed, suggests are not.
@@ -88,18 +110,31 @@ synaptic
   apt rdepends lists what they call reverse dependencies - a list of packages which depend on <package-name> 
   
 `wizard@laptop 17:09:05 $ apt rdepends synaptic
+
 synaptic
+
 Reverse Depends:
+
 |Suggests: apt
+
 Recommends: task-xfce-desktop
+
 Recommends: task-phosh-desktop
+
 Recommends: task-mate-desktop
+
 Recommends: task-lxqt-desktop
+
 Recommends: task-lxde-desktop
+
 Recommends: task-lomiri-desktop
+
 Recommends: task-gnome-flashback-desktop
+
 Suggests: mate-menu
+
 Suggests: lxqt-config
+
 Recommends: cinnamon-desktop-environment`
 
 so you can see that most Debian desktop environments recommend synaptic (except for GNOME and KDE, which have their own software management tool).
@@ -107,9 +142,13 @@ so you can see that most Debian desktop environments recommend synaptic (except 
   If you want to learn which package provides a particular file there are two ways to do it, depending on whether the package is installed.  If the package is installed you can just use for example, dpkg -S synaptic and you can see the output here - there was a lot of output but the package name is in the left column 
   
 `wizard@laptop 17:10:29 $ dpkg -S synaptic
+
 synaptic: /usr/share/synaptic/html/figures/synaptic-packagedetails.png
+
 synaptic: /usr/share/applications/synaptic.desktop
+
 synaptic: /usr/share/locale/ml/LC_MESSAGES/synaptic.mo
+
 synaptic: /usr/share/locale/lt/LC_MESSAGES/synaptic.mo`
 
 If the package is not installed you'd need to install `apt-file`, run `sudo apt-file update` (you only have to do this once) and then do an `apt-file search <filename>` and apt will return a list of packages that contain that file.
